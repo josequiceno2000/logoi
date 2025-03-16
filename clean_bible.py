@@ -11,7 +11,7 @@ def clean_bible_text(text):
     # Set all text to lowercase:
     text = text.lower()
     # Eliminate punctuation:
-    text = text.replace(".", "").replace("?", "").replace("!", "").replace(",", "")
+    text = text.replace(".", "").replace("?", "").replace("!", "").replace(",", "").replace("(", "").replace(")", "").replace(";", "").replace(":", "")
     return text
 
 
