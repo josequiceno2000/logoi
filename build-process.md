@@ -6,3 +6,5 @@ Steps:
     a. Shortest book of the Bible = John 2 *DONE*
     b. Get the text into a file *DONE*
     c. Clean data?
+        - Read data *DONE*
+        - 
