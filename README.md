@@ -28,6 +28,12 @@
 6. Allow functionality to see multiple language versions of one book or one section of the Bible
 
 
+## Proximate Improvements:
+1. Allow user to enter custom words to exclude
+2. Combine "come" and "came" in analysis
+3. Remove "said" from analysis
+4. Allow user to search a word and see its frequency in different books and sections
+
 ## Possible Future Extensions:
 *Word and Phrase Analysis*:
     - _Word Frequency Analysis_: Determine the most frequent words in each book, across the entire Bible, or within specific sections (e.g., Old Testament vs. New Testament). This can reveal key themes and vocabulary.   

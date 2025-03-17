@@ -42,6 +42,25 @@ def load_bible_data(file_paths):
 
 # File paths:
 file_paths = [
+    "/home/jquiceno2000/workspace/github.com/josequiceno2000/logoi/raw_bible_data/nrsvce/by_book/matthew.txt",
+    "/home/jquiceno2000/workspace/github.com/josequiceno2000/logoi/raw_bible_data/nrsvce/by_book/mark.txt",
+    "/home/jquiceno2000/workspace/github.com/josequiceno2000/logoi/raw_bible_data/nrsvce/by_book/luke.txt",
+    "/home/jquiceno2000/workspace/github.com/josequiceno2000/logoi/raw_bible_data/nrsvce/by_book/john.txt",
+    "/home/jquiceno2000/workspace/github.com/josequiceno2000/logoi/raw_bible_data/nrsvce/by_book/acts.txt",
+    "/home/jquiceno2000/workspace/github.com/josequiceno2000/logoi/raw_bible_data/nrsvce/by_book/romans.txt",
+    "/home/jquiceno2000/workspace/github.com/josequiceno2000/logoi/raw_bible_data/nrsvce/by_book/1_corinthians.txt",
+    "/home/jquiceno2000/workspace/github.com/josequiceno2000/logoi/raw_bible_data/nrsvce/by_book/2_corinthians.txt",
+    "/home/jquiceno2000/workspace/github.com/josequiceno2000/logoi/raw_bible_data/nrsvce/by_book/galatians.txt",
+    "/home/jquiceno2000/workspace/github.com/josequiceno2000/logoi/raw_bible_data/nrsvce/by_book/ephesians.txt",
+    "/home/jquiceno2000/workspace/github.com/josequiceno2000/logoi/raw_bible_data/nrsvce/by_book/philippians.txt",
+    "/home/jquiceno2000/workspace/github.com/josequiceno2000/logoi/raw_bible_data/nrsvce/by_book/colossians.txt",
+    "/home/jquiceno2000/workspace/github.com/josequiceno2000/logoi/raw_bible_data/nrsvce/by_book/1_thessalonians.txt",
+    "/home/jquiceno2000/workspace/github.com/josequiceno2000/logoi/raw_bible_data/nrsvce/by_book/2_thessalonians.txt",
+    "/home/jquiceno2000/workspace/github.com/josequiceno2000/logoi/raw_bible_data/nrsvce/by_book/1_timothy.txt",
+    "/home/jquiceno2000/workspace/github.com/josequiceno2000/logoi/raw_bible_data/nrsvce/by_book/2_timothy.txt",
+    "/home/jquiceno2000/workspace/github.com/josequiceno2000/logoi/raw_bible_data/nrsvce/by_book/titus.txt",
+    "/home/jquiceno2000/workspace/github.com/josequiceno2000/logoi/raw_bible_data/nrsvce/by_book/philemon.txt",
+    "/home/jquiceno2000/workspace/github.com/josequiceno2000/logoi/raw_bible_data/nrsvce/by_book/hebrews.txt",
     "/home/jquiceno2000/workspace/github.com/josequiceno2000/logoi/raw_bible_data/nrsvce/by_book/james.txt",
     "/home/jquiceno2000/workspace/github.com/josequiceno2000/logoi/raw_bible_data/nrsvce/by_book/1_peter.txt",
     "/home/jquiceno2000/workspace/github.com/josequiceno2000/logoi/raw_bible_data/nrsvce/by_book/2_peter.txt",
@@ -49,6 +68,7 @@ file_paths = [
     "/home/jquiceno2000/workspace/github.com/josequiceno2000/logoi/raw_bible_data/nrsvce/by_book/2_john.txt",
     "/home/jquiceno2000/workspace/github.com/josequiceno2000/logoi/raw_bible_data/nrsvce/by_book/3_john.txt",
     "/home/jquiceno2000/workspace/github.com/josequiceno2000/logoi/raw_bible_data/nrsvce/by_book/jude.txt",
+    "/home/jquiceno2000/workspace/github.com/josequiceno2000/logoi/raw_bible_data/nrsvce/by_book/revelation.txt"
 ]
 
 biblical_dataframe = load_bible_data(file_paths)
@@ -158,16 +178,8 @@ gospels = [
     "Matthew", "Mark", "Luke", "John"
 ]
 
-acts = [
-    "Acts of the Apostles"
-]
-
 pauline_epistles = [
     "Romans", "1 Corinthians", "2 Corinthians", "Galatians", "Ephesians", "Philippians", "Colossians", "1 Thessalonians", "2 Thessalonians", "1 Timothy", "2 Timothy", "Titus", "Philemon"
-]
-
-hebrews = [
-    "Hebrews"
 ]
 
 general_epistles = [
@@ -184,7 +196,40 @@ def get_section_frequencies(biblical_set):
     cumulative_words = [word for sublist in section_dataframe["processed_words"] for word in sublist]
     return Counter(cumulative_words)
 
+new_testament_frequencies = get_section_frequencies(new_testament)
+gospels_frequencies = get_section_frequencies(gospels)
 general_epistles_frequencies = get_section_frequencies(general_epistles)
+pauline_epistles_frequencies = get_section_frequencies(pauline_epistles)
+
+section_title = "\n--- NEW TESTAMENT ---"
+section_title_length = len(section_title) - 1
+print(section_title)
+
+for word, count in new_testament_frequencies.most_common(most_common_words):
+    result = f"{word.title()}: {count}"
+    print(result)
+
+print("-" * (section_title_length))
+
+section_title = "\n--- GOSPELS ---"
+section_title_length = len(section_title) - 1
+print(section_title)
+
+for word, count in gospels_frequencies.most_common(most_common_words):
+    result = f"{word.title()}: {count}"
+    print(result)
+
+print("-" * (section_title_length))
+
+section_title = "\n--- PAULINE EPISTLES ---"
+section_title_length = len(section_title) - 1
+print(section_title)
+
+for word, count in pauline_epistles_frequencies.most_common(most_common_words):
+    result = f"{word.title()}: {count}"
+    print(result)
+
+print("-" * (section_title_length))
 
 section_title = "\n--- GENERAL EPISTLES ---"
 section_title_length = len(section_title) - 1
