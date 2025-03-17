@@ -52,7 +52,7 @@ file_paths = [
 ]
 
 biblical_dataframe = load_bible_data(file_paths)
-print(biblical_dataframe.head())
+
 
 def clean_text(text):
     """
@@ -82,7 +82,7 @@ def preprocess_text(text):
     Args:
         text: text of the Bible which may or may not have been cleaned (str)
     Returns:
-        lemmatized_words: a list of lemmatized words (str)
+        final_words: a list of lemmatized words (str)
     """
     cleaned_text = clean_text(text) # Repeat cleaning just in case
     words = word_tokenize(cleaned_text) # Tokenize words in each sentence
@@ -90,12 +90,16 @@ def preprocess_text(text):
     filtered_words = [word for word in words if word not in stop_words]
     lemmatizer = WordNetLemmatizer()
     lemmatized_words = [lemmatizer.lemmatize(word) for word in filtered_words]
-    return lemmatized_words
+    final_words = []
+    for word in lemmatized_words:
+        if word == "u":
+            final_words.append("us")
+        else:
+            final_words.append(word)
+    return final_words
 
 biblical_dataframe["cleaned_text"] = biblical_dataframe["text"].apply(clean_text)
 biblical_dataframe["processed_words"] = biblical_dataframe["cleaned_text"].apply(preprocess_text)
-
-print(biblical_dataframe.head())
 
 # Group Data Frame by book and count word frequencies across a book or sections
 def get_word_frequencies(words):
