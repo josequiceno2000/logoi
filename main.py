@@ -6,7 +6,6 @@ from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.stem import WordNetLemmatizer
 from collections import Counter
 
-
 def load_bible_data(file_paths):
     """
     Loads Bible text from multiple files into a Pandas DataFrame
@@ -20,7 +19,7 @@ def load_bible_data(file_paths):
     """
     data = []
     for file_path in file_paths:
-        biblical_book_name = file_path.split('/')[-1].replace(".txt", "").capitalize()
+        biblical_book_name = file_path.split('/')[-1].replace(".txt", "").replace("_", " ").lower().capitalize()
         with open(file_path, 'r', encoding='utf-8') as biblical_book:
             chapter = 1
             verse_number = 1
@@ -32,7 +31,7 @@ def load_bible_data(file_paths):
                     continue
                 if len(line) != 0:
                     data.append({
-                        "book": biblical_book_name,
+                        "biblical_book": biblical_book_name,
                         "chapter": chapter,
                         "verse_number": verse_number,
                         "text": line
@@ -43,13 +42,13 @@ def load_bible_data(file_paths):
 
 # File paths:
 file_paths = [
-    "cleaned_bible_data/nrsvce/by_book/james_cleaned.txt",
-    "cleaned_bible_data/nrsvce/by_book/1_john_cleaned.txt",
-    "cleaned_bible_data/nrsvce/by_book/2_john_cleaned.txt",
-    "cleaned_bible_data/nrsvce/by_book/3_john_cleaned.txt",
-    "cleaned_bible_data/nrsvce/by_book/1_peter_cleaned.txt",
-    "cleaned_bible_data/nrsvce/by_book/2_peter_cleaned.txt",
-    "cleaned_bible_data/nrsvce/by_book/jude_cleaned.txt",
+    "/home/jquiceno2000/workspace/github.com/josequiceno2000/logoi/raw_bible_data/nrsvce/by_book/james.txt",
+    "/home/jquiceno2000/workspace/github.com/josequiceno2000/logoi/raw_bible_data/nrsvce/by_book/1_peter.txt",
+    "/home/jquiceno2000/workspace/github.com/josequiceno2000/logoi/raw_bible_data/nrsvce/by_book/2_peter.txt",
+    "/home/jquiceno2000/workspace/github.com/josequiceno2000/logoi/raw_bible_data/nrsvce/by_book/1_john.txt",
+    "/home/jquiceno2000/workspace/github.com/josequiceno2000/logoi/raw_bible_data/nrsvce/by_book/2_john.txt",
+    "/home/jquiceno2000/workspace/github.com/josequiceno2000/logoi/raw_bible_data/nrsvce/by_book/3_john.txt",
+    "/home/jquiceno2000/workspace/github.com/josequiceno2000/logoi/raw_bible_data/nrsvce/by_book/jude.txt",
 ]
 
 biblical_dataframe = load_bible_data(file_paths)
@@ -82,13 +81,13 @@ def preprocess_text(text):
     cleaned_text = clean_text(text) # Repeat cleaning just in case
     words = word_tokenize(cleaned_text) # Tokenize words in each sentence
     stop_words = set(stopwords.words('english')) # Get a list of stopwords
-    filtered_words = [word for word in words if words not in stop_words]
+    filtered_words = [word for word in words if word not in stop_words]
     lemmatizer = WordNetLemmatizer()
     lemmatized_words = [lemmatizer.lemmatize(word) for word in filtered_words]
     return lemmatized_words
 
 biblical_dataframe["cleaned_text"] = biblical_dataframe["text"].apply(clean_text)
-biblical_dataframe["processed_words"] = biblical_dataframe["cleaned_text"].appyl(preprocess_text)
+biblical_dataframe["processed_words"] = biblical_dataframe["cleaned_text"].apply(preprocess_text)
 
 print(biblical_dataframe.head())
 
@@ -99,7 +98,78 @@ def get_word_frequencies(words):
 biblical_book_frequencies = biblical_dataframe.groupby("biblical_book")["processed_words"].apply(lambda x: [word for sublist in x for word in sublist]).apply(get_word_frequencies)
 
 # Print the top 7 most common words from each book
+most_common_words = 7
+
 for biblical_book, frequencies in biblical_book_frequencies.items():
     print(f"--- {biblical_book} ---")
-    for word, count in frequencies.most_common(7):
+    for word, count in frequencies.most_common(most_common_words):
         print(f"{word} appeared: {count} times")
+
+# Define Bible Sections:
+old_testament = [
+    'Genesis', 'Exodus', 'Leviticus', 'Numbers', 'Deuteronomy',
+    'Joshua', 'Judges', 'Ruth', '1 Samuel', '2 Samuel', '1 Kings', '2 Kings',
+    '1 Chronicles', '2 Chronicles', 'Ezra', 'Nehemiah', 'Esther',
+    'Job', 'Psalms', 'Proverbs', 'Ecclesiastes', 'Song of Songs',
+    'Isaiah', 'Jeremiah', 'Lamentations', 'Ezekiel', 'Daniel',
+    'Hosea', 'Joel', 'Amos', 'Obadiah', 'Jonah', 'Micah', 'Nahum',
+    'Habakkuk', 'Zephaniah', 'Haggai', 'Zechariah', 'Malachi',
+    'Tobit', 'Judith', 'Wisdom', 'Sirach', 'Baruch'
+]
+
+pentateuch = [
+    "Genesis", "Exodus", "Leviticus", "Numbers", "Deuteronomy"
+]
+
+historical_books = [
+    "Joshua", "Judges", "Ruth", "1 Samuel", "2 Samuel", "1 Kings", "2 Kings", "1 Chronicles", "2 Chronicles", "Ezra", "Nehemiah", "Tobit", "Judith", "Esther", "1 Maccabees", "2 Maccabees"
+]
+
+poetic_books = [
+    "Job", "Psalms", "Proverbs", "Ecclesiastes", "Song of Songs", "Wisdom of Solomon", "Sirach"
+]
+
+new_testament = [
+    'Matthew', 'Mark', 'Luke', 'John', 'Acts',
+    'Romans', '1 Corinthians', '2 Corinthians', 'Galatians', 'Ephesians',
+    'Philippians', 'Colossians', '1 Thessalonians', '2 Thessalonians',
+    '1 Timothy', '2 Timothy', 'Titus', 'Philemon',
+    'Hebrews', 'James', '1 Peter', '2 Peter', '1 John', '2 John', '3 John',
+    'Jude', 'Revelation'
+]
+
+gospels = [
+    "Matthew", "Mark", "Luke", "John"
+]
+
+acts = [
+    "Acts of the Apostles"
+]
+
+pauline_epistles = [
+    "Romans", "1 Corinthians", "2 Corinthians", "Galatians", "Ephesians", "Philippians", "Colossians", "1 Thessalonians", "2 Thessalonians", "1 Timothy", "2 Timothy", "Titus", "Philemon"
+]
+
+hebrews = [
+    "Hebrews"
+]
+
+general_epistles = [
+    "James", "1 Peter", "2 Peter", "1 John", "2 John", "3 John", "Jude"
+]
+
+revelation = [
+    "Revelation"
+]
+
+# Analyze word frequencies based on section
+def get_section_frequencies(biblical_set):
+    section_dataframe = biblical_dataframe[biblical_dataframe["biblical_book"].isin(biblical_set)]
+    cumulative_words = [word for sublist in section_dataframe["processed_words"] for word in sublist]
+    return Counter(cumulative_words)
+
+general_epistles_frequencies = get_section_frequencies(general_epistles)
+
+print("\n--- GENERAL EPISTLES ---")
+for word, count in general_epistles_frequencies.most_common(most_common_words):
+    print(f"{word} was found: {count} times")
