@@ -91,3 +91,15 @@ biblical_dataframe["cleaned_text"] = biblical_dataframe["text"].apply(clean_text
 biblical_dataframe["processed_words"] = biblical_dataframe["cleaned_text"].appyl(preprocess_text)
 
 print(biblical_dataframe.head())
+
+# Group Data Frame by book and count word frequencies across a book or sections
+def get_word_frequencies(words):
+    return Counter(words)
+
+biblical_book_frequencies = biblical_dataframe.groupby("biblical_book")["processed_words"].apply(lambda x: [word for sublist in x for word in sublist]).apply(get_word_frequencies)
+
+# Print the top 7 most common words from each book
+for biblical_book, frequencies in biblical_book_frequencies.items():
+    print(f"--- {biblical_book} ---")
+    for word, count in frequencies.most_common(7):
+        print(f"{word} appeared: {count} times")
