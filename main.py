@@ -101,9 +101,9 @@ biblical_book_frequencies = biblical_dataframe.groupby("biblical_book")["process
 most_common_words = 7
 
 for biblical_book, frequencies in biblical_book_frequencies.items():
-    print(f"--- {biblical_book} ---")
+    print(f"\n--- {biblical_book.title()} ---")
     for word, count in frequencies.most_common(most_common_words):
-        print(f"{word} appeared: {count} times")
+        print(f"{word.upper()}: {count}")
 
 # Define Bible Sections:
 old_testament = [
@@ -172,4 +172,4 @@ general_epistles_frequencies = get_section_frequencies(general_epistles)
 
 print("\n--- GENERAL EPISTLES ---")
 for word, count in general_epistles_frequencies.most_common(most_common_words):
-    print(f"{word} was found: {count} times")
+    print(f"{word.upper()}: {count}")
