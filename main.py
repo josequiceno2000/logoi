@@ -66,7 +66,13 @@ def clean_text(text):
     """
     text = re.sub(r'^\d+\s*', '', text) # Remove any leading numbers for verses
     text = " ".join(text.split()) # Normalize white-space
-    text = text.translate(str.maketrans("", "", string.punctuation)) # Remove punctuation
+
+    # Remove punctuation besides apostraphes
+    text = re.sub(r"[^\w\s\']", "", text)
+
+    # Remove single quotation marks left by themselves
+    text = re.sub(r"\'\s|\s\'|\'", "", text)
+    
     text = text.lower() # Lower the text for ease of parsing
     return text
 
