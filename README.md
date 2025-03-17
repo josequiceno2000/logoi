@@ -13,7 +13,7 @@
         - Acts
         - Pauline Epistles
         - Hebrews
-        - General Epistles
+        - General Epistles (7 Books from James to Jude)
         - Revalation
 
 4. Repeats steps 1 - 3 for:
