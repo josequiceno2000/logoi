@@ -16,13 +16,13 @@ def clean_text(text):
     text = text.lower()
     return text
 
-def preprocess_text(text):
+def preprocess_text(text, stop_words):
     """
     Takes cleaned text and tokenizes, removes stop words, lemmatizes, and corrects "u" to "us".
     """
-    words = word_tokenize(text) 
-    stop_words = set(stopwords.words('english')) 
-    stop_words.update(["said", "say", "says"])
+    words = word_tokenize(text)
+    word_map = {"gods": "god"}
+    words = [word_map.get(word, word) for word in words]
     filtered_words = [word for word in words if word not in stop_words]
     pos_tags = nltk.pos_tag(filtered_words)
     lemmatizer = WordNetLemmatizer()
@@ -34,7 +34,6 @@ def preprocess_text(text):
         else:
             lemmatized_words.append(lemmatizer.lemmatize(word))
     final_words = ["us" if word == "u" else word for word in lemmatized_words]
-
-    verb_map = {"came": "come"}
+    verb_map = {"came": "come",}
     final_words = [verb_map.get(word, word) for word in final_words]
     return final_words

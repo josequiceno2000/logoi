@@ -44,10 +44,10 @@
     - ~~Work through the program to allow all books to come in~~ ✔
     - ~~Rework sections~~ ✔
 2. Allow user to enter custom words to exclude
-3. ~~Combine "come" and "came" in analysis~~
-4. ~~Remove "said" from analysis~~
+3. ~~Combine "come" and "came" in analysis~~ ✔
+4. ~~Remove "said" from analysis~~ ✔
 5. Allow user to search a word and see its frequency in different books and sections
-6. ~~Improve Markdown of this README file~~
+6. ~~Improve Markdown of this README file~~ ✔
 
 -----------------------------
 ## Possible Future Extensions
