@@ -22,6 +22,7 @@ def preprocess_text(text):
     """
     words = word_tokenize(text) 
     stop_words = set(stopwords.words('english')) 
+    stop_words.update(["said", "say", "says"])
     filtered_words = [word for word in words if word not in stop_words]
     pos_tags = nltk.pos_tag(filtered_words)
     lemmatizer = WordNetLemmatizer()

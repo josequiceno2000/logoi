@@ -21,12 +21,12 @@ for biblical_book, frequencies in biblical_book_frequencies.items():
     print_frequencies(frequencies, biblical_book, words_to_display)
 
 
-new_testament_frequencies = get_section_frequencies(biblical_dataframe, bible_sections.new_testament)
-gospels_frequencies = get_section_frequencies(biblical_dataframe, bible_sections.gospels)
-general_epistles_frequencies = get_section_frequencies(biblical_dataframe, bible_sections.general_epistles)
-pauline_epistles_frequencies = get_section_frequencies(biblical_dataframe, bible_sections.pauline_epistles)
+# new_testament_frequencies = get_section_frequencies(biblical_dataframe, bible_sections.new_testament)
+# gospels_frequencies = get_section_frequencies(biblical_dataframe, bible_sections.gospels)
+# general_epistles_frequencies = get_section_frequencies(biblical_dataframe, bible_sections.general_epistles)
+# pauline_epistles_frequencies = get_section_frequencies(biblical_dataframe, bible_sections.pauline_epistles)
 
-print_frequencies(new_testament_frequencies, "NEW TESTAMENT", words_to_display)
-print_frequencies(gospels_frequencies, "GOSPELS", words_to_display)
-print_frequencies(new_testament_frequencies, "PAULINE EPISTLES", words_to_display)
-print_frequencies(new_testament_frequencies, "GENERAL EPISTLES", words_to_display)
+# print_frequencies(new_testament_frequencies, "NEW TESTAMENT", words_to_display)
+# print_frequencies(gospels_frequencies, "GOSPELS", words_to_display)
+# print_frequencies(new_testament_frequencies, "PAULINE EPISTLES", words_to_display)
+# print_frequencies(new_testament_frequencies, "GENERAL EPISTLES", words_to_display)
