@@ -15,7 +15,6 @@ biblical_dataframe["processed_words"] = biblical_dataframe["cleaned_text"].apply
 # Group Data Frame by book and count word frequencies across a book or sections
 biblical_book_frequencies = biblical_dataframe.groupby("biblical_book")["processed_words"].apply(lambda x: [word for sublist in x for word in sublist]).apply(get_word_frequencies)
 
-# Print the top 7 most common words from each book
 words_to_display = 7
 
 for biblical_book, frequencies in biblical_book_frequencies.items():

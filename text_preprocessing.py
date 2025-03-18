@@ -3,6 +3,7 @@ import string
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
+import nltk
 
 def clean_text(text):
     """
@@ -19,10 +20,20 @@ def preprocess_text(text):
     """
     Takes cleaned text and tokenizes, removes stop words, lemmatizes, and corrects "u" to "us".
     """
-    words = word_tokenize(text) # Tokenize words in each sentence
-    stop_words = set(stopwords.words('english')) # Get a list of stopwords
+    words = word_tokenize(text) 
+    stop_words = set(stopwords.words('english')) 
     filtered_words = [word for word in words if word not in stop_words]
+    pos_tags = nltk.pos_tag(filtered_words)
     lemmatizer = WordNetLemmatizer()
-    lemmatized_words = [lemmatizer.lemmatize(word) for word in filtered_words]
+    lemmatized_words = []
+    for word, tag in pos_tags:
+        # Check if the word is a verb
+        if tag == "VBZ":
+            lemmatized_words.append(lemmatizer.lemmatize(word, 'v'))
+        else:
+            lemmatized_words.append(lemmatizer.lemmatize(word))
     final_words = ["us" if word == "u" else word for word in lemmatized_words]
+
+    verb_map = {"came": "come"}
+    final_words = [verb_map.get(word, word) for word in final_words]
     return final_words
