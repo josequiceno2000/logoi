@@ -29,10 +29,12 @@
 
 
 ## Proximate Improvements:
-1. Allow user to enter custom words to exclude
-2. Combine "come" and "came" in analysis
-3. Remove "said" from analysis
-4. Allow user to search a word and see its frequency in different books and sections
+1. Add rest of Bible
+2. Allow user to enter custom words to exclude
+3. Combine "come" and "came" in analysis
+4. Remove "said" from analysis
+5. Allow user to search a word and see its frequency in different books and sections
+6. Improve Markdown of this README file
 
 ## Possible Future Extensions:
 *Word and Phrase Analysis*:
