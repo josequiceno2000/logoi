@@ -12,46 +12,25 @@ biblical_dataframe = load_bible_data()
 
 def clean_text(text):
     """
-    Takes text from a biblical dataframe and standardizes the format for data processing
-
-    Args:
-        text: str containing one verse of the Bible
-    
-    Returns
-        text: now cleaned for putting into a new column of the dataframe
+    Takes text from a biblical dataframe and standardizes the format for data processing.
     """
-    text = re.sub(r'^\d+\s*', '', text) # Remove any leading numbers for verses
-    text = " ".join(text.split()) # Normalize white-space
-
-    # Remove punctuation besides apostraphes
+    text = re.sub(r'^\d+\s*', '', text) 
+    text = " ".join(text.split()) 
     text = re.sub(r"[^\w\s\']", "", text)
-
-    # Remove single quotation marks left by themselves
     text = re.sub(r"\'\s|\s\'|\'", "", text)
-    
-    text = text.lower() # Lower the text for ease of parsing
+    text = text.lower()
     return text
 
 def preprocess_text(text):
     """
-    Takes text and tokenizes its words and lemmatizes them for analysis
-    Args:
-        text: text of the Bible which may or may not have been cleaned (str)
-    Returns:
-        final_words: a list of lemmatized words (str)
+    Takes cleaned text and tokenizes, removes stop words, lemmatizes, and corrects "u" to "us".
     """
-    cleaned_text = clean_text(text) # Repeat cleaning just in case
     words = word_tokenize(cleaned_text) # Tokenize words in each sentence
     stop_words = set(stopwords.words('english')) # Get a list of stopwords
     filtered_words = [word for word in words if word not in stop_words]
     lemmatizer = WordNetLemmatizer()
     lemmatized_words = [lemmatizer.lemmatize(word) for word in filtered_words]
-    final_words = []
-    for word in lemmatized_words:
-        if word == "u":
-            final_words.append("us")
-        else:
-            final_words.append(word)
+    final_words = ["us" if word == "u" else word for word in lemmatized_words]
     return final_words
 
 biblical_dataframe["cleaned_text"] = biblical_dataframe["text"].apply(clean_text)
