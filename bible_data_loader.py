@@ -11,7 +11,7 @@ def load_bible_data():
     Returns:
         data frame containing book, chapter, verse, and text info for the entire book of the Bible
     """
-    
+
     file_paths = []
 
     # Add translations as needed:
