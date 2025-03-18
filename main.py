@@ -6,7 +6,9 @@ from text_preprocessing import clean_text, preprocess_text
 biblical_dataframe = load_bible_data()
 
 # Clean and Preprocess the text
+print("Cleaning the biblical text...")
 biblical_dataframe["cleaned_text"] = biblical_dataframe["text"].apply(clean_text)
+print("Preprocessing the biblical text...")
 biblical_dataframe["processed_words"] = biblical_dataframe["cleaned_text"].apply(preprocess_text)
 
 # Group Data Frame by book and count word frequencies across a book or sections
