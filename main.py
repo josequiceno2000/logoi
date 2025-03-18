@@ -162,7 +162,11 @@ historical_books = [
 ]
 
 poetic_books = [
-    "Job", "Psalms", "Proverbs", "Ecclesiastes", "Song of Songs", "Wisdom of Solomon", "Sirach"
+    "Job", "Psalms", "Proverbs", "Ecclesiastes", "Song of Songs", "Wisdom", "Sirach"
+]
+
+prophetic_books = [
+    "Isaiah", "Jeremiah", "Lamentations", "Baruch", "Ezekiel", "Daniel", "Hosea", "Amos", "Obadiah", "Jonah", "Micah", "Nahum", "Habakkuk", "Zephaniah", "Haggai", "Zechariah", "Malachi"
 ]
 
 new_testament = [
