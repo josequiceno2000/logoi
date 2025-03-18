@@ -30,7 +30,8 @@
 
 ## Proximate Improvements:
 1. ~~Add rest of Bible~~ ✔
-    - Work through the program to allow all books to come in
+    - ~~Work through the program to allow all books to come in~~ ✔
+    - Rework sections
 2. Allow user to enter custom words to exclude
 3. Combine "come" and "came" in analysis
 4. Remove "said" from analysis
