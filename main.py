@@ -7,7 +7,7 @@ from nltk.corpus import stopwords
 
 # Initialize stop words
 stop_words = set(stopwords.words('english'))
-stop_words.update(["said", "say", "says"])
+stop_words.update(["said", "say", "says", "shall", "like", "let", "may"])
 
 # Ask user if they want to exclude certain words from analysis:
 will_exclude_words = input("Should we exclude any words from analysis? [Type y/n]:\n").lower()
@@ -47,7 +47,7 @@ for biblical_book, frequencies in biblical_book_frequencies.items():
 # Loop through map to get section counts and print them
 for section, books in bible_map.items():
     section_frequencies = get_section_frequencies(biblical_dataframe, books)
-    print_frequencies(section_frequencies, section.upper(), words_to_display)
+    print_frequencies(section_frequencies, section.upper().replace("_", " "), words_to_display)
 # new_testament_frequencies = get_section_frequencies(biblical_dataframe, bible_sections.new_testament)
 # gospels_frequencies = get_section_frequencies(biblical_dataframe, bible_sections.gospels)
 # general_epistles_frequencies = get_section_frequencies(biblical_dataframe, bible_sections.general_epistles)
