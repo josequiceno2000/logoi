@@ -47,7 +47,7 @@
 3. ~~Combine "come" and "came" in analysis~~ ✔
 4. ~~Remove "said" from analysis~~ ✔
 5. ~~Improve Markdown of this README file~~ ✔
-6. Make the bible_sections a dictionary of lists
+6. ~~Make the bible_sections a dictionary of lists~~ ✔
 7. Get data from each section of the Bible as defined in bible_sections
 8. Make functions separate from main.py (especially getting input from user on stop_words)
 9. Allow user to search a word and see its frequency in different books and sections

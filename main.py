@@ -1,7 +1,7 @@
 from bible_data_loader import load_bible_data
 from text_preprocessing import clean_text, preprocess_text
 from analysis import get_word_frequencies, get_section_frequencies, print_frequencies
-import bible_sections
+from bible_sections import bible_map
 import nltk
 from nltk.corpus import stopwords
 
@@ -44,6 +44,10 @@ for biblical_book, frequencies in biblical_book_frequencies.items():
     print_frequencies(frequencies, biblical_book, words_to_display)
 
 
+# Loop through map to get section counts and print them
+for section, books in bible_map.items():
+    section_frequencies = get_section_frequencies(biblical_dataframe, books)
+    print_frequencies(section_frequencies, section.upper(), words_to_display)
 # new_testament_frequencies = get_section_frequencies(biblical_dataframe, bible_sections.new_testament)
 # gospels_frequencies = get_section_frequencies(biblical_dataframe, bible_sections.gospels)
 # general_epistles_frequencies = get_section_frequencies(biblical_dataframe, bible_sections.general_epistles)
