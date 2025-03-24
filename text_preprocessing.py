@@ -5,6 +5,42 @@ from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 import nltk
 
+def get_default_stop_words():
+    """Returns a set of default stop words."""
+    default_stop_words = set(stopwords.words('english'))
+    additional_stop_words = {"said", "say", "says", "shall", "like", "let", "may"}
+    return default_stop_words.union(additional_stop_words)
+
+def get_user_excluded_words():
+    """Gets user-specified excluded words."""
+    user_excluded_words = input(
+            "\nOkay! Which words shall we exclude? [Type words separated by a space]\n"
+            "Example: god try call\n"
+        ).split()
+    return user_excluded_words
+
+def set_stop_words():
+    """
+    Makes a set of default and user-specified stop-words.
+    """
+    stop_words = get_default_stop_words()
+
+    will_exclude_words = input("Should we exclude any words from analysis? [Type y/n]:\n").lower()
+
+    while will_exclude_words not in ("y", "n"):
+        print(f"\nError: Not a valid response.")
+        will_exclude_words = input("\nShould we exclude any words from analysis? [Type y/n]:\n").lower()
+
+    if will_exclude_words == "y":
+        user_excluded_words = get_user_excluded_words()
+        print(f"\nGot it. Beginning analysis while excluding {[word for word in user_excluded_words]}...")
+        stop_words.update(user_excluded_words)
+    else:
+        print("\nOkay! Beginning analysis...\n")
+        return stop_words
+
+    return stop_words
+
 def clean_text(text):
     """
     Takes text from a biblical dataframe and standardizes the format for data processing.
