@@ -1,4 +1,5 @@
 from bible_data_loader import load_bible_data
+from output import export_frequencies_to_csv
 from text_preprocessing import set_stop_words, clean_text, preprocess_text
 from analysis import get_word_frequencies, get_section_frequencies, print_frequencies
 from bible_sections import bible_map
@@ -9,17 +10,20 @@ from colorama import Fore, Style, init
 import intro
 
 def main():
+
     # 0: Intro
     init(autoreset=True)
     intro.loading_animation()
     intro.show_banner()
     analysis = intro.colorful_intro()
     if analysis == "📊 Word Frequency":
-        intro.select_translation()
+        translation = intro.select_translation()
     else:
         print("We're working on that functionality! Please check back soon.")
         return
-
+    
+    if translation == "New Revised Standard Version - Catholic Edition":
+        translation = "nrsvce"
 
     # 1: Generate stop words
     stop_words = set_stop_words()
@@ -60,14 +64,20 @@ def main():
 
     words_to_display = 7
 
-    # Loop through the books
-    for biblical_book, frequencies in biblical_book_frequencies.items():
-        print_frequencies(frequencies, biblical_book, words_to_display)
+    # 5: Loop through the books
+    # for biblical_book, frequencies in biblical_book_frequencies.items():
+    #     print_frequencies(frequencies, biblical_book, words_to_display)
 
-    # Loop through map to get section counts and print them
-    for section, books in bible_map.items():
-        section_frequencies = get_section_frequencies(biblical_dataframe, books)
-        print_frequencies(section_frequencies, section.upper().replace("_", " "), words_to_display)
+    # 6: Loop through map to get section counts and print them
+    # for section, books in bible_map.items():
+    #     section_frequencies = get_section_frequencies(biblical_dataframe, books)
+    #     print_frequencies(section_frequencies, section.upper().replace("_", " "), words_to_display)
+    
+    # 7: Export to csv file
+    print("Exporting to csv...")
+    folder_name = "analyses/" + translation
+    file_path = export_frequencies_to_csv(biblical_book_frequencies, folder_name, translation)
+    print(Fore.GREEN + f"✅ Word frequencies exported to {file_path}.\n")
 
 if __name__ == "__main__":
     main()
