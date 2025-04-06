@@ -3,6 +3,7 @@ import string
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
+from InquirerPy import inquirer
 import nltk
 
 def get_default_stop_words():
@@ -22,13 +23,16 @@ def set_stop_words():
     """
     stop_words = get_default_stop_words()
 
-    will_exclude_words = input("Should we exclude any words from analysis? [Type y/n]:\n» ").lower()
+    will_exclude_words = inquirer.select(
+        message="Should we exclude any words from analysis?",
+        choices= [
+            "Yes",
+            "No"
+        ],
+        default="No"
+    ).execute()
 
-    while will_exclude_words not in ("y", "n"):
-        print(f"\nError: Not a valid response.")
-        will_exclude_words = input("\nShould we exclude any words from analysis? [Type y/n]:\n» ").lower()
-
-    if will_exclude_words == "y":
+    if will_exclude_words == "Yes":
         user_excluded_words = get_user_excluded_words()
         print(f"\nGot it. Beginning analysis while excluding {[word for word in user_excluded_words]}...\n")
         stop_words.update(user_excluded_words)

@@ -1,15 +1,10 @@
+from rich.progress import track
 import pandas as pd
 
 def load_bible_data():
     """
-    Loads Bible text from multiple files into a Pandas DataFrame
-    Assumes each file is a book of the Bible, and that each line is a verse
-
-    Args:
-        file_paths: list of strings containing file paths to .txt files of Bible books
-    
-    Returns:
-        data frame containing book, chapter, verse, and text info for the entire book of the Bible
+    Loads Bible text from multiple files into a Pandas DataFrame.
+    Shows loading progress using rich.progress.track.
     """
 
     file_paths = []
@@ -100,7 +95,8 @@ def load_bible_data():
             file_paths.append(folder + book)
 
     data = []
-    for file_path in file_paths:
+
+    for file_path in track(file_paths, description="Loading Bible...", transient=True):
         biblical_book_name = file_path.split('/')[-1].replace(".txt", "").replace("_", " ").lower().capitalize()
         with open(file_path, 'r', encoding='utf-8') as biblical_book:
             chapter = 1
