@@ -4,30 +4,47 @@ from analysis import get_word_frequencies, get_section_frequencies, print_freque
 from bible_sections import bible_map
 import nltk
 from nltk.corpus import stopwords
+import intro
 
-# 1: Generate stop words
-stop_words = set_stop_words()
+def main():
+    # 0: Intro
+    intro.loading_animation()
+    intro.show_banner()
+    analysis = intro.colorful_intro()
+    if analysis == 1:
+        pass
+    else:
+        print("We're working on that functionality! Please check back soon.")
+        return
 
-# 2: Create the Biblical Dataframe
-print("Loading biblical data...")
-biblical_dataframe = load_bible_data()
 
-# 3: Clean and Preprocess the text
-print("Cleaning the biblical text...")
-biblical_dataframe["cleaned_text"] = biblical_dataframe["text"].apply(clean_text)
-print("Preprocessing the biblical text...")
-biblical_dataframe["processed_words"] = biblical_dataframe["cleaned_text"].apply(lambda x: preprocess_text(x, stop_words))
+    # 1: Generate stop words
+    stop_words = set_stop_words()
 
-# 4: Group Data Frame by book and count word frequencies across a book or sections
-biblical_book_frequencies = biblical_dataframe.groupby("biblical_book")["processed_words"].apply(lambda x: [word for sublist in x for word in sublist]).apply(get_word_frequencies)
+    # 2: Create the Biblical Dataframe
+    print("Loading biblical data...")
+    biblical_dataframe = load_bible_data()
 
-words_to_display = 7
+    # 3: Clean and Preprocess the text
+    print("Cleaning the biblical text...")
+    biblical_dataframe["cleaned_text"] = biblical_dataframe["text"].apply(clean_text)
+    print("Preprocessing the biblical text...")
+    biblical_dataframe["processed_words"] = biblical_dataframe["cleaned_text"].apply(lambda x: preprocess_text(x, stop_words))
 
-# Loop through the books
-for biblical_book, frequencies in biblical_book_frequencies.items():
-    print_frequencies(frequencies, biblical_book, words_to_display)
+    # 4: Group Data Frame by book and count word frequencies across a book or sections
+    print("Getting word frequencies...")
+    biblical_book_frequencies = biblical_dataframe.groupby("biblical_book")["processed_words"].apply(lambda x: [word for sublist in x for word in sublist]).apply(get_word_frequencies)
 
-# Loop through map to get section counts and print them
-for section, books in bible_map.items():
-    section_frequencies = get_section_frequencies(biblical_dataframe, books)
-    print_frequencies(section_frequencies, section.upper().replace("_", " "), words_to_display)
+    words_to_display = 7
+
+    # Loop through the books
+    for biblical_book, frequencies in biblical_book_frequencies.items():
+        print_frequencies(frequencies, biblical_book, words_to_display)
+
+    # Loop through map to get section counts and print them
+    for section, books in bible_map.items():
+        section_frequencies = get_section_frequencies(biblical_dataframe, books)
+        print_frequencies(section_frequencies, section.upper().replace("_", " "), words_to_display)
+
+if __name__ == "__main__":
+    main()

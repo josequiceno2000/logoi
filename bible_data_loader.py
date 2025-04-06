@@ -102,7 +102,6 @@ def load_bible_data():
     data = []
     for file_path in file_paths:
         biblical_book_name = file_path.split('/')[-1].replace(".txt", "").replace("_", " ").lower().capitalize()
-        print(f"Loading data for {biblical_book_name}")
         with open(file_path, 'r', encoding='utf-8') as biblical_book:
             chapter = 1
             verse_number = 1
