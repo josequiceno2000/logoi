@@ -1,7 +1,9 @@
 # Logoi
 
 ## Description
-Welcome to Logoi! This python application that reads and cleans biblical translations, returning word frequencies by book or biblical section. Logoi is well-suited for expansive theological research, sentiment analysis, and other natural language processing tasks.
+Logoi reads and cleans biblical translations, allowing for a series of natural language processing analyses. Logoi is well-suited for expansive theological research, sentiment analysis, and other NLP tasks!
+
+### Demo
 ![Demo of Logoi running in terminal](demo.gif)
 
 ## Motivation
