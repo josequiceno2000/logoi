@@ -1,6 +1,6 @@
 # Logoi
 
-## Description
+## 📜 Description
 Logoi reads and cleans biblical translations before performing one of many possible natural language processing analyses. Its current build focuses on the following analyses:
 - Word Frequency 
 - Collocation 
@@ -12,7 +12,7 @@ Logoi reads and cleans biblical translations before performing one of many possi
 ### Demo
 ![Demo of Logoi running in terminal](demo.gif)
 
-## Motivation
+## 🔥 Motivation
 **I wanted a tool that would help me engage with various Biblical translations *linguistically***. More than that, I wanted a tool that could make sense of all the words in the Word, something that would tell a story through them, of their original meaning, and of the editorial decisions which have contributed to that meaning across time.
 
 Logoi is greek for "words". *But it can also mean "reasons" or "senses"*. It is a tool that, with continuing development, will allow us to study Scripture through modern natural language processing techniques. My hope is that this will especially aid future biblical scholars. In that way, it will enhance our senses in reading scripture by scrutinizing its words, phrases, chapters and books.
@@ -61,6 +61,6 @@ python3 main.py
 
 Logoi will clean the raw Bible text, perform preprocessing, and output word frequencies by book and section.
 
-## Usage
+## 🛠️ Usage
 
-## Contributing
+## 🤝 Contributing
