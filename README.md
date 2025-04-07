@@ -39,25 +39,25 @@ Logoi is greek for "words". *But it can also mean "reasons" or "senses"*. It is 
 
 ## 🚀 Quick Start
 ### 1. Clone the Repository
-    ```
-    git clone https://github.com/josequiceno2000/logoi.git
-    cd logoi
-    ```
+```
+git clone https://github.com/josequiceno2000/logoi.git
+cd logoi
+```
 ### 2. Create & Activate Virtual Environment (Recommended)
-    ```
-    python3 -m venv logoi
-    source env/bin/activate # On Windows: env\Scripts\activate
-    ```
+```
+python3 -m venv logoi
+source env/bin/activate # On Windows: env\Scripts\activate
+```
 
 ### 3. Install Requirements
-    ```
-    pip instal -r requirements.txt
-    ```
+```
+pip instal -r requirements.txt
+```
 
 ### 4. Run Logoi
-    ```
-    python3 main.py
-    ```
+```
+python3 main.py
+```
 
 Logoi will clean the raw Bible text, perform preprocessing, and output word frequencies by book and section.
 
