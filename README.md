@@ -37,7 +37,13 @@ Logoi is greek for "words". *But it can also mean "reasons" or "senses"*. It is 
     - *Which sections have the widest selection of words?*
     - *Which authors share vocabulary?*
 
-## Quick Start
+## 🚀 Quick Start
+### 1. Clone the Repository
+```
+bash
+git clone https://github.com/josequiceno2000/logoi.git
+cd logoi
+```
 
 ## Usage
 
