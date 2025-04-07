@@ -29,8 +29,8 @@ def colorful_intro():
     return analysis
 
 def loading_animation():
-    print("Initializing Logoi ", end="")
-    for _ in range(7):
+    print("Initializing Logoi", end="")
+    for _ in range(5):
         time.sleep(0.2)
         print(".", end="")
         sys.stdout.flush()
