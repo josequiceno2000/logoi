@@ -45,7 +45,7 @@ cd logoi
 ```
 ### 2. Create & Activate Virtual Environment (Recommended)
 ```
-python3 -m venv logoi
+python3 -m venv env
 source env/bin/activate # On Windows: env\Scripts\activate
 ```
 
@@ -104,3 +104,40 @@ Want to try different sections or run other analyses? Stay tuned!
 *OR... contribute!*
 
 ## 🤝 Contributing
+Welcome! Thanks for wanting to continue the vision of this project. Whether you're willing to fix bugs, improve performance, add new analyses, or just give feedback, I'm grateful.
+### Clone the Repo:
+```
+git clone https://github.com/josequiceno2000/logoi.git
+cd logoi
+```
+### Set Environment:
+Make sure you have Python 3.10+ installed, then install dependencies using pip:
+```
+python -m venv env
+source env/bin/activate     # On Windows use `env\Scripts\activate`
+pip instal -r requirements.txt
+```
+**Note**: You'll also need the NLTK data if it's your first time running:
+```
+import nltk
+nltk.download("punkt")
+nltk.download("wordnet")
+nltk.download("averaged_perceptron_tagger")
+```
+Or run this in your terminal:
+```
+python -c "import nltk; [nltk.download(pkg) for pkg in ['punkt', 'wordnet', 'averaged_perceptron_tagger']]"
+```
+### Run the Project
+```
+python main.py
+```
+### Submit a Pull Request
+If you'd like to contribute:
+1. **Fork** the repository.
+2. **Create a new branch** (`git checkout -b feature/my-feature`).
+3. Make your changes.
+4. **Push your fork** (`git push origin feature/my-feature`).
+5. Open a **pull request** to the `main` branch.
+
+Please keep PRs focused and concise! If you're introducing a new analysis or section type, feel free to open an issue first so we can brainstorm.
