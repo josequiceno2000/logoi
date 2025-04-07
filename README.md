@@ -90,14 +90,17 @@ Running `main.py` walks you through
     ```
     Each row contains a biblical book and its top words with respective frequencies.
 - **Chart Example**
-    After the analysis, a plot of the most common words in *Romans* is displayed using `matplotlib`. **The chart is interactable and downloadable**!
+    After the analysis, a plot of the most common words in *Romans* is displayed using `matplotlib`. 
+    - **The chart is interactable and downloadable**!
+
     ![Romans Word Frequencies](Romans.png)
 #### Try Modifying It
-Want to see the plot for another book? Change the call to:
+Want to see the plot for another book? Change the call in main.py to:
 ```
 plot_top_words(biblical_book_frequencies["Genesis"], "Genesis")
 ```
 Want to try different sections or run other analyses? Stay tuned!
-OR... contribute!
+
+*OR... contribute!*
 
 ## 🤝 Contributing
