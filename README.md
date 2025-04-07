@@ -62,5 +62,42 @@ python3 main.py
 Logoi will clean the raw Bible text, perform preprocessing, and output word frequencies by book and section.
 
 ## 🛠️ Usage
+Once Logoi is installed, using it is pretty straightforward:
+### Run the Program
+```
+python3 main.py
+```
+### Under the Hood
+Running `main.py` walks you through
+#### Intro & Selection
+- You will be primpted to choose your preferred **analysis type** (currently suports **Word Frequency**)
+- Then, you will select a **Bible translation** (e.g., *New Revised Standard Version - Catholic Edition*)
+#### Data Preparation
+- Loads and structures biblical text into a DataFrame
+- Cleans the text: removes noise, punctuation, and standardizes formatting.
+- Preprocsses words: tokenization, stopword removal, lemmatization, etc.
+#### Analysis
+- Calculates word frequencies **per book** (e.g., Romans, Genesis) using `collections.Counter`.
+#### Export
+- Automatically saves the data into a `.csv` file in a newly-made `analyses/` directory.
+#### Visualization
+- Plots the most frequent words in the selected book using a horizontal bar chart.
+### Output Files
+- **CSV Export**
+    Located in:
+    ```
+    analyses/{translation}/word_frequencies.csv
+    ```
+    Each row contains a biblical book and its top words with respective frequencies.
+- **Chart Example**
+    After the analysis, a plot of the most common words in *Romans* is displayed using `matplotlib`. **The chart is interactable and downloadable**!
+    ![Romans Word Frequencies](Romans.png)
+#### Try Modifying It
+Want to see the plot for another book? Change the call to:
+```
+plot_top_words(biblical_book_frequencies["Genesis"], "Genesis")
+```
+Want to try different sections or run other analyses? Stay tuned!
+OR... contribute!
 
 ## 🤝 Contributing
