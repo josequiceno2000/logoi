@@ -52,6 +52,8 @@
 8. ~~Make functions separate from main.py (especially getting input from user on stop_words)~~ ✔
 9. Allow user to search a word and see its frequency in different books and sections
 10. Use data visualization to portray word counts
+11. Find a way to have biblical data scrapped 
+12. Store biblical data analyses in a smart database for later study
 
 -----------------------------
 ## Possible Future Extensions
